@@ -7,24 +7,24 @@
 
 #include "SM3.h"
 #include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
 
-void BiToW(unsigned int Bi[], unsigned int W[]){
+
+void BiToW(const unsigned int Bi[], unsigned int W[]) {
     int i;
     unsigned int temp;
     for(i = 0; i <= 15; ++i){
-        W[i] = (Bi[4*i] << 24) + (Bi[4*i+1] << 16)
-                + (Bi[4*i+2] << 8) + (Bi[4*i+3]);
+        W[i] = (Bi[4*i] << 24u) + (Bi[4*i+1] << 16u)
+               + (Bi[4*i+2] << 8u) + (Bi[4*i+3]);
     }
     for(i = 16; i <= 67; ++i){
-        temp = W[i-16] ^ W[i-9] ^ SM3_rot_left32(W[i-3], 15);
-        W[i] = SM3_p1(temp) ^ (SM3_rot_left32(W[i-13], 7)) ^ W[i-6];
+        temp = W[i-16] ^ W[i-9] ^ SM3_rot_left32(W[i-3], 15u);
+        W[i] = SM3_p1(temp) ^ (SM3_rot_left32(W[i-13], 7u)) ^ W[i-6];
     }
 
 }
 
-void WToW1(unsigned int W[], unsigned int W1[]){
+void WToW1(const unsigned int W[], unsigned int W1[]){
     int i;
     for(i = 0; i < 64; ++i){
         W1[i] = W[i] ^ W[i+4];
@@ -56,12 +56,12 @@ void CF(unsigned int W[], unsigned int W1[], unsigned int V[]){
         if(j == 0){
             T = SM3_T1;
         } else if(j == 16){
-            T = SM3_rot_left32(SM3_T2, 16);
+            T = SM3_rot_left32(SM3_T2, 16u);
         } else {
-            T = SM3_rot_left32(T, 1);
+            T = SM3_rot_left32(T, 1u);
         }
-        SS1 = SM3_rot_left32((SM3_rot_left32(A, 12) + E + T), 7);
-        SS2 = SS1 ^ SM3_rot_left32(A, 12);
+        SS1 = SM3_rot_left32((SM3_rot_left32(A, 12u) + E + T), 7u);
+        SS2 = SS1 ^ SM3_rot_left32(A, 12u);
         if(j <= 15){
             FF = SM3_ff0(A, B, C);
         } else {
@@ -77,21 +77,13 @@ void CF(unsigned int W[], unsigned int W1[], unsigned int V[]){
         TT2 = GG + H + SS1 + *W;
         ++W;
         D = C;
-        C = SM3_rot_left32(B, 9);
+        C = SM3_rot_left32(B, 9u);
         B = A;
         A = TT1;
         H = G;
-        G = SM3_rot_left32(F, 19);
+        G = SM3_rot_left32(F, 19u);
         F = E;
         E = SM3_p0(TT2);
-        printf("\nA = %x", A);
-        printf("  B = %x", B);
-        printf("  C = %x", C);
-        printf("  D = %x", D);
-        printf("  E = %x", E);
-        printf("  F = %x", F);
-        printf("  G = %x", G);
-        printf("  H = %x", H);
     }
 
     V[0] = A ^ V[0];
@@ -102,29 +94,13 @@ void CF(unsigned int W[], unsigned int W1[], unsigned int V[]){
     V[5] = F ^ V[5];
     V[6] = G ^ V[6];
     V[7] = H ^ V[7];
-    printf("\nV[0] = %x\n", V[0]);
-    printf("V[1] = %x\n", V[1]);
-    printf("V[2] = %x\n", V[2]);
-    printf("V[3] = %x\n", V[3]);
-    printf("V[4] = %x\n", V[4]);
-    printf("V[5] = %x\n", V[5]);
-    printf("V[6] = %x\n", V[6]);
-    printf("V[7] = %x\n\n", V[7]);
 }
 
 void SM3_compress(SM3_STATE * md){
     unsigned int W[68];
     unsigned int W1[64];
-    printf("\n");
     BiToW(md->buf, W);
-    for(int j = 0; j < 68; ++j){
-        printf("%x ", W[j]);
-    }
-    printf("-------------------\n");
     WToW1(W, W1);
-    for(int j = 0; j < 64; ++j){
-        printf("%x ", W1[j]);
-    }
     CF(W, W1, md->state);
 }
 
@@ -155,12 +131,9 @@ void SM3_init(SM3_STATE * md){
     md->state[7] = SM3_IVH;
 }
 
-void SM3_done(SM3_STATE *md, unsigned char hash[])
-{
+void SM3_done(SM3_STATE *md, char hash[]){
     int i;
-    unsigned char tmp = 0;
-    md->length += md->curlen <<3;
-    //printf("%d\n", md->length);
+    md->length += md->curlen << 3u;
     md->buf[md->curlen] = 0x80;
     md->curlen++;
     if (md->curlen > 56) {
@@ -178,34 +151,20 @@ void SM3_done(SM3_STATE *md, unsigned char hash[])
     for (i = 56; i < 60; i++){
         md->buf[i] = 0;
     }
-    md->buf[63] = md->length & 0xff;
-    md->buf[62] = (md->length >> 8) & 0xff;
-    md->buf[61] = (md->length >> 16) & 0xff;
-    md->buf[60] = (md->length >> 24) & 0xff;
-    for(int j = 0; j < 64; ++j){
-        printf("%x ", md->buf[j]);
-    }
+    md->buf[63] = md->length & 0xffu;
+    md->buf[62] = (md->length >> 8u) & 0xffu;
+    md->buf[61] = (md->length >> 16u) & 0xffu;
+    md->buf[60] = (md->length >> 24u) & 0xffu;
     SM3_compress(md);
-    printf("\nmd->state[0] = %x\n", md->state[0]);
-    printf("md->state[1] = %x\n", md->state[1]);
-    printf("md->state[2] = %x\n", md->state[2]);
-    printf("md->state[3] = %x\n", md->state[3]);
-    printf("md->state[4] = %x\n", md->state[4]);
-    printf("md->state[5] = %x\n", md->state[5]);
-    printf("md->state[6] = %x\n", md->state[6]);
-    printf("md->state[7] = %x\n", md->state[7]);
-    printf("sizeof(md->state) = %d\n", sizeof(md->state));
-    //memcpy(hash, md->state, SM3_len/8);
     int temp = 0;
     for(i = 0; i < 8; ++i) {
-        temp += sprintf(hash + temp, "%x", md->state[i]);
+        temp += sprintf_s(hash + temp, 9, "%08x", md->state[i]);
     }
 }
 
-void SM3_256(unsigned char buf[], int len, unsigned char hash[]){
+void SM3_256(unsigned char buf[], int len, char hash[]){
     SM3_STATE md;
     SM3_init(&md);
     SM3_process(&md, buf, len);
     SM3_done(&md, hash);
-    printf("hash = %s\n", hash);
 }
