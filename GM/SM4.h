@@ -47,5 +47,5 @@ static unsigned int SM4_FK[4] = {0xA3B1BAC6, 0x56AA3350, 0x677D9197, 0xB27022DC}
 
 void SM4_KeySchedule(const unsigned char MK[], unsigned int rk[]);
 void SM4_Encrypt(unsigned char MK[], const unsigned char PlainText[], unsigned char CipherText[]);
-void SM4_Decrypt(unsigned char MK[], unsigned char CipherText[], unsigned char PlainText[]);
+void SM4_Decrypt(unsigned char MK[], const unsigned char CipherText[], unsigned char PlainText[]);
 #endif //GM_SM4_H

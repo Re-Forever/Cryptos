@@ -18,28 +18,32 @@ void SM3_SelfTest() {
     printf("MsgHash2 = %s\n", MsgHash2);
 }
 
-void SM4_SelfTest(){
+void SM4_SelfTest() {
     int i;
-    unsigned char key[16] =   {0x01, 0x23, 0x45, 0x67,
-                               0x89, 0xab, 0xcd, 0xef,
-                               0xfe, 0xdc, 0xba, 0x98,
-                               0x76, 0x54, 0x32, 0x10};
-    unsigned char plain[16] =  {0x01, 0x23, 0x45, 0x67,
+    unsigned char key[16] = {0x01, 0x23, 0x45, 0x67,
+                             0x89, 0xab, 0xcd, 0xef,
+                             0xfe, 0xdc, 0xba, 0x98,
+                             0x76, 0x54, 0x32, 0x10};
+    unsigned char plain[16] = {0x01, 0x23, 0x45, 0x67,
                                0x89, 0xab, 0xcd, 0xef,
                                0xfe, 0xdc, 0xba, 0x98,
                                0x76, 0x54, 0x32, 0x10};
     unsigned char cipher[16] = {0x68, 0x1e, 0xdf, 0x34,
-                               0xd2, 0x06, 0x96, 0x5e,
-                               0x86, 0xb3, 0xe9, 0x4f,
-                               0x53, 0x6e, 0x42, 0x46};
+                                0xd2, 0x06, 0x96, 0x5e,
+                                0x86, 0xb3, 0xe9, 0x4f,
+                                0x53, 0x6e, 0x42, 0x46};
     unsigned char En_output[16];
     unsigned char De_output[16];
     printf("%x\n", key[0]);
     SM4_Encrypt(key, plain, En_output);
-    for(i = 0; i < 16; ++i){
+    for (i = 0; i < 16; ++i) {
         printf("%02x ", En_output[i]);
     }
-    //SM4_Decrypt(key, cipher, De_output);
+    printf("\n");
+    SM4_Decrypt(key, cipher, De_output);
+    for (i = 0; i < 16; ++i) {
+        printf("%02x ", De_output[i]);
+    }
 }
 
 int main () {
