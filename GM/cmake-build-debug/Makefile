@@ -122,6 +122,33 @@ GM/fast:
 	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/build
 .PHONY : GM/fast
 
+SM2.obj: SM2.c.obj
+
+.PHONY : SM2.obj
+
+# target to build an object file
+SM2.c.obj:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM2.c.obj
+.PHONY : SM2.c.obj
+
+SM2.i: SM2.c.i
+
+.PHONY : SM2.i
+
+# target to preprocess a source file
+SM2.c.i:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM2.c.i
+.PHONY : SM2.c.i
+
+SM2.s: SM2.c.s
+
+.PHONY : SM2.s
+
+# target to generate assembly for a file
+SM2.c.s:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM2.c.s
+.PHONY : SM2.c.s
+
 SM3.obj: SM3.c.obj
 
 .PHONY : SM3.obj
@@ -148,6 +175,33 @@ SM3.s: SM3.c.s
 SM3.c.s:
 	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM3.c.s
 .PHONY : SM3.c.s
+
+SM4.obj: SM4.c.obj
+
+.PHONY : SM4.obj
+
+# target to build an object file
+SM4.c.obj:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM4.c.obj
+.PHONY : SM4.c.obj
+
+SM4.i: SM4.c.i
+
+.PHONY : SM4.i
+
+# target to preprocess a source file
+SM4.c.i:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM4.c.i
+.PHONY : SM4.c.i
+
+SM4.s: SM4.c.s
+
+.PHONY : SM4.s
+
+# target to generate assembly for a file
+SM4.c.s:
+	$(MAKE) -f CMakeFiles\GM.dir\build.make CMakeFiles/GM.dir/SM4.c.s
+.PHONY : SM4.c.s
 
 main.obj: main.c.obj
 
@@ -185,9 +239,15 @@ help:
 	@echo ... GM
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... SM2.obj
+	@echo ... SM2.i
+	@echo ... SM2.s
 	@echo ... SM3.obj
 	@echo ... SM3.i
 	@echo ... SM3.s
+	@echo ... SM4.obj
+	@echo ... SM4.i
+	@echo ... SM4.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

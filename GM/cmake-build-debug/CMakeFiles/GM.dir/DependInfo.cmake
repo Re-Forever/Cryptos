@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "E:/Cryptos/GM/SM2.c" "E:/Cryptos/GM/cmake-build-debug/CMakeFiles/GM.dir/SM2.c.obj"
   "E:/Cryptos/GM/SM3.c" "E:/Cryptos/GM/cmake-build-debug/CMakeFiles/GM.dir/SM3.c.obj"
+  "E:/Cryptos/GM/SM4.c" "E:/Cryptos/GM/cmake-build-debug/CMakeFiles/GM.dir/SM4.c.obj"
   "E:/Cryptos/GM/main.c" "E:/Cryptos/GM/cmake-build-debug/CMakeFiles/GM.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

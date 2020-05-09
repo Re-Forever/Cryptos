@@ -3,7 +3,9 @@
     <words>
       <w>curlen</w>
       <w>reforever</w>
+      <w>rkey</w>
       <w>rotl</w>
+      <w>sbox</w>
     </words>
   </dictionary>
 </component>

@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GM.dir/SM2.c.obj"
   "CMakeFiles/GM.dir/SM3.c.obj"
+  "CMakeFiles/GM.dir/SM4.c.obj"
   "CMakeFiles/GM.dir/main.c.obj"
   "GM.exe"
   "GM.exe.manifest"

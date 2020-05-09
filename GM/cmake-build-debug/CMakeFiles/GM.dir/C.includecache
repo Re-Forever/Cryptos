@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-E:/Cryptos/GM/SM3.c
-SM3.h
 E:/Cryptos/GM/SM3.h
-string.h
--
-stdio.h
--
 
-E:/Cryptos/GM/SM3.h
+E:/Cryptos/GM/SM4.h
 
 E:/Cryptos/GM/main.c
 stdio.h
 -
 SM3.h
 E:/Cryptos/GM/SM3.h
+SM4.h
+E:/Cryptos/GM/SM4.h
 
